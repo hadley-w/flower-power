@@ -75,7 +75,7 @@
 
     header {
       background:
-        linear-gradient(rgba(255,245,249,0.65), rgba(255,245,249,0.9)),
+        linear-gradient(rgba(255,245,249,0.62), rgba(255,245,249,0.9)),
         url("https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
       min-height: 88vh;
       display: flex;
@@ -86,9 +86,9 @@
     }
 
     .hero {
-      max-width: 850px;
-      background: rgba(255,255,255,0.72);
-      padding: 40px 28px;
+      max-width: 860px;
+      background: rgba(255,255,255,0.78);
+      padding: 42px 28px;
       border-radius: 24px;
       box-shadow: 0 8px 30px rgba(0,0,0,0.08);
     }
@@ -227,6 +227,11 @@
       overflow: hidden;
       box-shadow: 0 8px 22px rgba(0,0,0,0.07);
       border: 1px solid #f1dce6;
+      transition: 0.25s ease;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.02);
     }
 
     .gallery-item img {
@@ -274,7 +279,6 @@
 
     .info-list li {
       margin-bottom: 10px;
-      padding-left: 0;
       color: #4f3d46;
     }
 
@@ -297,6 +301,32 @@
       max-width: 760px;
       margin: 0 auto 20px;
       color: #5b4d54;
+    }
+
+    .map-box {
+      overflow: hidden;
+      border-radius: 22px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+      border: 1px solid #f1dce6;
+      background: white;
+    }
+
+    .map-box iframe {
+      width: 100%;
+      height: 380px;
+      border: 0;
+      display: block;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     footer {
@@ -370,7 +400,7 @@
   </nav>
 
   <header>
-    <div class="hero">
+    <div class="hero reveal">
       <h1>Flower Power</h1>
       <p>
         Flower Power is a community program that shares flowers, kindness, and connection.
@@ -378,13 +408,13 @@
         opportunities for volunteers to serve the community.
       </p>
       <div class="hero-buttons">
-        <a href="#appointments" class="btn btn-primary">Make an Appointment</a>
-        <a href="#volunteer" class="btn btn-secondary">Volunteer With Us</a>
+        <a href="https://forms.gle/PUT-YOUR-APPOINTMENT-FORM-LINK-HERE" target="_blank" class="btn btn-primary">Make an Appointment</a>
+        <a href="https://forms.gle/PUT-YOUR-VOLUNTEER-FORM-LINK-HERE" target="_blank" class="btn btn-secondary">Volunteer With Us</a>
       </div>
     </div>
   </header>
 
-  <section class="section" id="about">
+  <section class="section reveal" id="about">
     <h2 class="section-title">About Flower Power</h2>
     <p class="section-subtitle">
       We believe flowers can do more than decorate a space. They can bring comfort, joy,
@@ -400,7 +430,7 @@
     </div>
   </section>
 
-  <section class="section" id="services">
+  <section class="section reveal" id="services">
     <h2 class="section-title">What We Do</h2>
     <p class="section-subtitle">
       Our work combines flowers, service, and community support in simple but meaningful ways.
@@ -429,7 +459,7 @@
     </div>
   </section>
 
-  <section class="section" id="gallery">
+  <section class="section reveal" id="gallery">
     <h2 class="section-title">Photo Gallery</h2>
     <p class="section-subtitle">
       A few images that reflect the beauty, warmth, and spirit of Flower Power.
@@ -454,7 +484,7 @@
     </div>
   </section>
 
-  <section class="section" id="appointments">
+  <section class="section reveal" id="appointments">
     <h2 class="section-title">Appointments</h2>
     <p class="section-subtitle">
       Schedule a flower pick-up or connect with us to learn more about upcoming opportunities.
@@ -465,31 +495,29 @@
         <h3>Book a Flower Pick-Up</h3>
         <p>
           Community members can set up an appointment to pick up flowers or arrangements.
-          This section can be connected to a real booking platform later.
         </p>
         <ul class="info-list">
+          <li>• Click the pink button to open the appointment Google Form</li>
           <li>• Choose a pick-up time that works for you</li>
           <li>• Use this for floral gifts or community sharing</li>
-          <li>• Replace the button link with your Google Form or Calendly page</li>
         </ul>
         <br>
-        <a href="#" class="btn btn-primary">Book Flower Pick-Up</a>
+        <a href="https://forms.gle/PUT-YOUR-APPOINTMENT-FORM-LINK-HERE" target="_blank" class="btn btn-primary">Book Flower Pick-Up</a>
       </div>
 
       <div class="box">
-        <h3>Helpful Note</h3>
+        <h3>Volunteer Sign-Up</h3>
         <p>
-          Right now, the button is a placeholder. Later, you can replace the <b>#</b> in the link
-          with your real scheduling form, Google Form, or school project sign-up page.
+          Interested volunteers can register through the volunteer form and hear about future events,
+          flower preparation days, and community service opportunities.
         </p>
-        <p>
-          This makes the site look complete now while still allowing you to add a real form later.
-        </p>
+        <br>
+        <a href="https://forms.gle/PUT-YOUR-VOLUNTEER-FORM-LINK-HERE" target="_blank" class="btn btn-secondary">Open Volunteer Form</a>
       </div>
     </div>
   </section>
 
-  <section class="section" id="volunteer">
+  <section class="section reveal" id="volunteer">
     <h2 class="section-title">Volunteer With Us</h2>
     <p class="section-subtitle">
       Volunteers are at the heart of Flower Power. Their time, energy, and kindness make this work possible.
@@ -516,14 +544,13 @@
     <div class="cta-band">
       <h3>Want to Volunteer?</h3>
       <p>
-        We would love to have volunteers who care about service, beauty, and community connection.
-        You can replace the button below with your real volunteer registration link later.
+        Click below to open the volunteer registration form.
       </p>
-      <a href="#" class="btn btn-primary">Sign Up to Volunteer</a>
+      <a href="https://forms.gle/PUT-YOUR-VOLUNTEER-FORM-LINK-HERE" target="_blank" class="btn btn-primary">Sign Up to Volunteer</a>
     </div>
   </section>
 
-  <section class="section" id="contact">
+  <section class="section reveal" id="contact">
     <h2 class="section-title">Contact Us</h2>
     <p class="section-subtitle">
       Reach out for questions, appointments, volunteer information, or community partnerships.
@@ -534,7 +561,7 @@
         <h3>Contact Information</h3>
         <p><b>Email:</b> flowerpower@example.com</p>
         <p><b>Phone:</b> (000) 000-0000</p>
-        <p><b>Location:</b> Your City or Pickup Location</p>
+        <p><b>Location:</b> Napa, California</p>
         <p><b>Hours:</b> Monday - Friday, 9:00 AM - 5:00 PM</p>
       </div>
 
@@ -548,11 +575,45 @@
     </div>
   </section>
 
+  <section class="section reveal" id="map">
+    <h2 class="section-title">Find Us</h2>
+    <p class="section-subtitle">
+      This map section can show your pickup or event location.
+    </p>
+    <div class="map-box">
+      <iframe
+        src="https://www.google.com/maps?q=Napa%2C%20California&z=13&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
   <footer>
     <p><b>Flower Power</b></p>
     <p>Sharing flowers, kindness, and connection with the community.</p>
     <p>© 2026 Flower Power. All rights reserved.</p>
   </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+
+    function showOnScroll() {
+      const triggerBottom = window.innerHeight * 0.88;
+
+      reveals.forEach((item) => {
+        const boxTop = item.getBoundingClientRect().top;
+
+        if (boxTop < triggerBottom) {
+          item.classList.add('show');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', showOnScroll);
+    window.addEventListener('load', showOnScroll);
+  </script>
 
 </body>
 </html>
