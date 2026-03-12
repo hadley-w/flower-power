@@ -1,18 +1,558 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Flower Power</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flower Power</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff9fc;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid #f0d7e2;
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-container {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #9d2f67;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #7d2453;
+      font-weight: bold;
+      font-size: 0.96rem;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #d94f8a;
+    }
+
+    header {
+      background:
+        linear-gradient(rgba(255,245,249,0.65), rgba(255,245,249,0.9)),
+        url("https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .hero {
+      max-width: 850px;
+      background: rgba(255,255,255,0.72);
+      padding: 40px 28px;
+      border-radius: 24px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      color: #8a2458;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      font-size: 1.12rem;
+      max-width: 720px;
+      margin: 0 auto 25px;
+      color: #4f3d46;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 24px;
+      border-radius: 999px;
+      font-weight: bold;
+      transition: 0.25s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #d94f8a;
+      color: white;
+      box-shadow: 0 6px 16px rgba(217,79,138,0.25);
+    }
+
+    .btn-primary:hover {
+      background: #bc3d72;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: #9d2f67;
+      border: 2px solid #e8a9c5;
+    }
+
+    .btn-secondary:hover {
+      background: #fff0f7;
+      transform: translateY(-2px);
+    }
+
+    .section {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 75px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 18px;
+      font-size: 2.3rem;
+      color: #8a2458;
+    }
+
+    .section-subtitle {
+      max-width: 800px;
+      margin: 0 auto 36px;
+      text-align: center;
+      color: #5b4d54;
+      font-size: 1.04rem;
+    }
+
+    .about-box {
+      background: linear-gradient(135deg, #fff, #fff5fa);
+      border: 1px solid #f3d8e6;
+      border-radius: 22px;
+      padding: 34px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+    }
+
+    .about-box p {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.05rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+      margin-top: 26px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 28px 22px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+      border: 1px solid #f2dce6;
+      transition: 0.25s ease;
+      text-align: center;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.08);
+    }
+
+    .card .icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      color: #d94f8a;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .gallery-item {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.07);
+      border: 1px solid #f1dce6;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .gallery-caption {
+      padding: 14px 16px;
+      font-size: 0.95rem;
+      color: #5b4d54;
+      text-align: center;
+    }
+
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      margin-top: 30px;
+    }
+
+    .box {
+      background: white;
+      border: 1px solid #f1d8e5;
+      border-radius: 22px;
+      padding: 30px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.05);
+    }
+
+    .box h3 {
+      color: #8a2458;
+      margin-bottom: 14px;
+      font-size: 1.45rem;
+    }
+
+    .box p {
+      margin-bottom: 12px;
+    }
+
+    .info-list {
+      list-style: none;
+      margin-top: 10px;
+    }
+
+    .info-list li {
+      margin-bottom: 10px;
+      padding-left: 0;
+      color: #4f3d46;
+    }
+
+    .cta-band {
+      background: linear-gradient(135deg, #f9d6e8, #ffeaf3);
+      border-radius: 26px;
+      padding: 38px 26px;
+      text-align: center;
+      margin-top: 25px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.05);
+    }
+
+    .cta-band h3 {
+      font-size: 1.9rem;
+      color: #8a2458;
+      margin-bottom: 12px;
+    }
+
+    .cta-band p {
+      max-width: 760px;
+      margin: 0 auto 20px;
+      color: #5b4d54;
+    }
+
+    footer {
+      margin-top: 40px;
+      background: #7d2453;
+      color: white;
+      text-align: center;
+      padding: 34px 20px;
+    }
+
+    footer p {
+      margin: 6px 0;
+    }
+
+    @media (max-width: 900px) {
+      .highlight-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 2.7rem;
+      }
+
+      .nav-container {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .nav-links {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 30px 20px;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .section {
+        padding: 60px 16px;
+      }
+
+      .section-title {
+        font-size: 1.85rem;
+      }
+    }
+  </style>
 </head>
+<body>
 
-<body style="font-family:Arial; text-align:center; padding:80px; background:#fff0f7">
+  <nav>
+    <div class="nav-container">
+      <div class="logo">Flower Power</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">What We Do</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#appointments">Appointments</a>
+        <a href="#volunteer">Volunteer</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-<h1 style="color:#c93c78;">Flower Power</h1>
+  <header>
+    <div class="hero">
+      <h1>Flower Power</h1>
+      <p>
+        Flower Power is a community program that shares flowers, kindness, and connection.
+        We use flowers to brighten people’s days, support our neighbors, and create meaningful
+        opportunities for volunteers to serve the community.
+      </p>
+      <div class="hero-buttons">
+        <a href="#appointments" class="btn btn-primary">Make an Appointment</a>
+        <a href="#volunteer" class="btn btn-secondary">Volunteer With Us</a>
+      </div>
+    </div>
+  </header>
 
-<p>Welcome to Flower Power.</p>
+  <section class="section" id="about">
+    <h2 class="section-title">About Flower Power</h2>
+    <p class="section-subtitle">
+      We believe flowers can do more than decorate a space. They can bring comfort, joy,
+      celebration, encouragement, and a sense of connection.
+    </p>
+    <div class="about-box">
+      <p>
+        Flower Power helps the community through floral gifts, volunteer service, and acts of care.
+        Our mission is to make people feel seen, supported, and valued. Whether we are preparing
+        arrangements, organizing community events, or creating opportunities for service, we want
+        every interaction to spread kindness and beauty in a meaningful way.
+      </p>
+    </div>
+  </section>
 
-<p>We share flowers, kindness, and connection with the community.</p>
+  <section class="section" id="services">
+    <h2 class="section-title">What We Do</h2>
+    <p class="section-subtitle">
+      Our work combines flowers, service, and community support in simple but meaningful ways.
+    </p>
+    <div class="cards">
+      <div class="card">
+        <div class="icon">🌸</div>
+        <h3>Flower Pick-Up</h3>
+        <p>Community members can schedule a time to pick up flowers and arrangements for special moments or everyday encouragement.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🤝</div>
+        <h3>Volunteer Opportunities</h3>
+        <p>Volunteers help prepare arrangements, organize materials, welcome visitors, and support events with care and teamwork.</p>
+      </div>
+      <div class="card">
+        <div class="icon">💗</div>
+        <h3>Community Care</h3>
+        <p>We share beauty and kindness through flowers that help bring comfort, support, and connection to others.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🎉</div>
+        <h3>Special Events</h3>
+        <p>We also support flower-related community events, service days, and projects that bring people together.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="gallery">
+    <h2 class="section-title">Photo Gallery</h2>
+    <p class="section-subtitle">
+      A few images that reflect the beauty, warmth, and spirit of Flower Power.
+    </p>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=900&q=80" alt="Flowers in bloom">
+        <div class="gallery-caption">Fresh flowers that brighten the day</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1468327768560-75b778cbb551?auto=format&fit=crop&w=900&q=80" alt="Bouquet">
+        <div class="gallery-caption">Bouquets prepared with care</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1527061011665-3652c757a4d4?auto=format&fit=crop&w=900&q=80" alt="Pink flowers">
+        <div class="gallery-caption">Color, comfort, and celebration</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1455656678494-4d1b5f3e7ad1?auto=format&fit=crop&w=900&q=80" alt="Flower arrangement">
+        <div class="gallery-caption">Arrangements for community moments</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="appointments">
+    <h2 class="section-title">Appointments</h2>
+    <p class="section-subtitle">
+      Schedule a flower pick-up or connect with us to learn more about upcoming opportunities.
+    </p>
+
+    <div class="highlight-grid">
+      <div class="box">
+        <h3>Book a Flower Pick-Up</h3>
+        <p>
+          Community members can set up an appointment to pick up flowers or arrangements.
+          This section can be connected to a real booking platform later.
+        </p>
+        <ul class="info-list">
+          <li>• Choose a pick-up time that works for you</li>
+          <li>• Use this for floral gifts or community sharing</li>
+          <li>• Replace the button link with your Google Form or Calendly page</li>
+        </ul>
+        <br>
+        <a href="#" class="btn btn-primary">Book Flower Pick-Up</a>
+      </div>
+
+      <div class="box">
+        <h3>Helpful Note</h3>
+        <p>
+          Right now, the button is a placeholder. Later, you can replace the <b>#</b> in the link
+          with your real scheduling form, Google Form, or school project sign-up page.
+        </p>
+        <p>
+          This makes the site look complete now while still allowing you to add a real form later.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="volunteer">
+    <h2 class="section-title">Volunteer With Us</h2>
+    <p class="section-subtitle">
+      Volunteers are at the heart of Flower Power. Their time, energy, and kindness make this work possible.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="icon">🌼</div>
+        <h3>Prepare Flowers</h3>
+        <p>Help sort flowers, prepare arrangements, and organize supplies for pick-up or events.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🫶</div>
+        <h3>Support Events</h3>
+        <p>Assist with community gatherings, service projects, and flower-sharing opportunities.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🌷</div>
+        <h3>Serve With Care</h3>
+        <p>Welcome people warmly and help create a positive, supportive atmosphere for everyone involved.</p>
+      </div>
+    </div>
+
+    <div class="cta-band">
+      <h3>Want to Volunteer?</h3>
+      <p>
+        We would love to have volunteers who care about service, beauty, and community connection.
+        You can replace the button below with your real volunteer registration link later.
+      </p>
+      <a href="#" class="btn btn-primary">Sign Up to Volunteer</a>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <p class="section-subtitle">
+      Reach out for questions, appointments, volunteer information, or community partnerships.
+    </p>
+
+    <div class="highlight-grid">
+      <div class="box">
+        <h3>Contact Information</h3>
+        <p><b>Email:</b> flowerpower@example.com</p>
+        <p><b>Phone:</b> (000) 000-0000</p>
+        <p><b>Location:</b> Your City or Pickup Location</p>
+        <p><b>Hours:</b> Monday - Friday, 9:00 AM - 5:00 PM</p>
+      </div>
+
+      <div class="box">
+        <h3>Our Mission</h3>
+        <p>
+          Flower Power exists to share encouragement, beauty, and community support through flowers
+          and volunteer service. Even small acts of care can make a meaningful difference.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p><b>Flower Power</b></p>
+    <p>Sharing flowers, kindness, and connection with the community.</p>
+    <p>© 2026 Flower Power. All rights reserved.</p>
+  </footer>
 
 </body>
-
 </html>
